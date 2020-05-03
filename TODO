@@ -1,0 +1,97 @@
+Basic Components:
+  ✔ Button @done(20-04-29 16:36)
+    Simple button with minimal styling
+      Features:
+        ✔ Button can be disabled @done(20-04-28 16:55)
+        ✔ Width can be set to full with one simple flag @done(20-04-28 16:56)
+        ✔ Add icons start/center/end @done(20-04-28 16:57)
+        ✔ Change element tag @done(20-04-28 16:59)
+          If user wants his button to be a link, then button tag should be a, for download button tag should be span
+        ✔ Customizable size @done(20-04-28 17:00)
+        ✔ Override default css classes with custom @done(20-04-28 17:02)
+      Issues:
+        ✔ Remove unnecessary css classes @done(20-05-03 15:06)
+
+  ☐ Avatar
+    Component that will represent user profile image
+      Features:
+        ✔ Customizable size @done(20-04-28 17:07)
+        ✔ Status badge @done(20-04-28 17:07)
+        ✔ String fallback if image has not been loaded @done(20-04-28 17:08)
+        ✔ Local image for fallback @done(20-05-03 15:42)
+        ✔ Override default css classes with custom @done(20-04-28 17:09)
+      Issues:
+
+  ☐ AvatarGroup @started(20-04-28 17:10)
+    Group component for Avatar
+      Features:
+        ✔ Set each avatar component size @done(20-04-28 17:13)
+          If user decides to group avatars together, they shoul be equal sizes
+        ✔ Show limited amount of avatars with additonal MoreAvatarsComponent @done(20-04-28 17:18)
+          This component should show count of hidden components that are out of user limits
+        ✔ Override default css classes with custom @done(20-04-28 17:20)
+        ☐ MoreAvatarsComponent customization and configuration
+          Add ability for user to display custom element or just a string instead of counter
+      Issues:
+
+  ☐ Field
+    Field represents data inputs like input/select/textarea
+      Features:
+        ✔ Field can be disabled @done(20-04-28 17:33)
+        ✔ Width can be set to full with one simple flag @done(20-04-28 17:33)
+        ✔ Customizable size @done(20-04-28 17:33)
+        ✔ Add icons start/end @done(20-04-28 17:33)
+        ✔ Change component type (input, select, textarea) @done(20-04-28 17:33)
+        ✔ Texarea resize @done(20-04-28 17:33)
+        ✔ Textarea auto resize @done(20-05-01 14:09)
+          User can set pass resize arg for textarea
+        ✔ Override default css classes with custom @done(20-04-28 17:33)
+      Issues:
+        ☐ Figure out FIELD_STYLE sizes
+          Field component has dead areas that are not interactive where they should be
+        ✔ Multiple select support @done(20-05-01 14:23)
+
+  ☐ Tooltip @started(20-04-28 23:34)
+    Display informative text when users hover over, focus on, or tap an element.
+      Features:
+        ✔ Placement @done(20-04-29 16:36)
+          Placement around child element in differen spots
+        ✔ Spacing @done(20-04-29 17:19)
+          Distance between tooltip and ref element
+        ✔ Override default css classes with custom @done(20-04-29 18:04)
+        ✔ Triggers @done(20-05-03 14:56)
+          Define the types of events that cause a tooltip to show.
+        ✔ With Arrow @done(20-05-03 14:32)
+      Issues:
+        ✔ Arrow position on first show up is broken @done(20-05-03 13:43)
+        ☐ Fix arrow placement when toolip is not in correct place due to there is not enough space 
+
+  ☐ Breadcrumb
+
+  ☐ BreadcrumbItem
+
+  ☐ Backdrop
+
+  ☐ Modal
+
+  ☐ Tabs
+
+  ☐ Collapse
+
+  ☐ Dropdown
+
+  ☐ Accordion
+
+  ☐ Drawer
+
+Utility Components:
+  ☐ Grid
+    Features:
+      ☐ Responsive grid
+        Responsive grid for sm/md/lg/xl
+      ☐ Spacing between grid items
+
+  ☐ Hidden
+
+Utility Hooks:
+  ☐ useImageLoaded
