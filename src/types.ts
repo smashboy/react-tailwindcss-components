@@ -221,6 +221,7 @@ export type TGridProps = {
 
 export type TBackdropProps = {
   show?: boolean;
+  allowScroll?: boolean;
   classes?: {
     root?: {
       disableDefault?: {
@@ -256,8 +257,6 @@ export type TModalProps = {
         display?: boolean;
         justifyContent?: boolean;
         alignItems?: boolean;
-        overflowX?: boolean;
-        overflowY?: boolean;
       };
       custom?: string;
     };

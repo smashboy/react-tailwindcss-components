@@ -38,8 +38,6 @@ export const Modal: React.FunctionComponent<TModalProps &
     flex: !classes?.root?.disableDefault?.display,
     'justify-center': !classes?.root?.disableDefault?.justifyContent,
     'items-center': !classes?.root?.disableDefault?.alignItems,
-    'overflow-y-auto': !classes?.root?.disableDefault?.overflowY,
-    'overflow-x-hidden': !classes?.root?.disableDefault?.overflowX,
   };
 
   // const MODAL_STYLE: TEditableClass = {};
@@ -70,6 +68,7 @@ export const Modal: React.FunctionComponent<TModalProps &
 const defaultProps = {
   show: false,
   componentSize: 'md',
+  hideBackdrop: false,
   disableBackdrop: false,
   disableBackdropClick: false,
 } as Partial<TModalProps>;
@@ -87,3 +86,5 @@ export const ModalDummyComponent: React.FunctionComponent<TModalProps> = props =
   } = props;
   return <div {...otherProps} />;
 };
+
+ModalDummyComponent.defaultProps = defaultProps;

@@ -4,7 +4,25 @@ import { TBackdropProps, TEditableClass } from '../types';
 
 export const Backdrop: React.FunctionComponent<TBackdropProps &
   React.ComponentProps<'div'>> = props => {
-  const { show, classes, className, children, ...otherProps } = props;
+  const {
+    show,
+    allowScroll,
+    classes,
+    className,
+    children,
+    ...otherProps
+  } = props;
+
+  React.useEffect(() => {
+    const bodyElement = document.body || window.document.body;
+    const bodyClass = bodyElement.classList;
+    const overflowClass = classnames('overflow-hidden');
+    if (show) {
+      if (!allowScroll) bodyClass.add(overflowClass);
+    } else {
+      if (!allowScroll) bodyClass.remove(overflowClass);
+    }
+  }, [show, allowScroll]);
 
   const ROOT_STYLE: TEditableClass = {
     fixed: !classes?.root?.disableDefault?.position,
@@ -37,12 +55,13 @@ export const Backdrop: React.FunctionComponent<TBackdropProps &
 
 const defaultProps = {
   show: false,
+  allowScroll: false,
 } as Partial<TBackdropProps>;
 
 Backdrop.defaultProps = defaultProps;
 
 export const BackdropDummyComponent: React.FunctionComponent<TBackdropProps> = props => {
-  const { show, classes, ...otherProps } = props;
+  const { show, allowScroll, classes, children, ...otherProps } = props;
   return <div {...otherProps} />;
 };
 

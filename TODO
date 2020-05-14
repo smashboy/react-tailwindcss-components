@@ -68,17 +68,26 @@ Basic Components:
 
   ☐ Breadcrumb
 
-  ☐ Backdrop
+  ✔ Backdrop @done(20-05-14 16:11)
+    // Container that can be shown behind loaders, dialogs and more.
+    Features:
+      ✔ Display container that will block interaction with the hole page @done(20-05-13 14:24)
+      ✔ Override default css classes with custom @done(20-05-14 15:03)
+      ✔ Ability to toggle page scroll @done(20-05-14 16:02)
 
   ☐ Modal
+    Features:
+      ☐ Show modal that will block interaction with the hole page
+      ✔ Option to hide backdrop @done(20-05-14 15:03)
+      ✔ Hide modal on backdrop click @done(20-05-14 15:03)
+      ☐ Customizable size
+      ☐ Override default css classes with custom
 
   ☐ Tabs
 
   ☐ Collapse
 
   ☐ Dropdown
-    Features:
-      ✔ Display container that will block interaction with the hole page @done(20-05-13 14:24)
 
   ☐ Accordion
 
