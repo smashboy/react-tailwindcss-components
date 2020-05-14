@@ -12,7 +12,7 @@ Basic Components:
       Issues:
         ✔ Remove unnecessary css classes @done(20-05-03 15:06)
 
-  ☐ Avatar
+  ✔ Avatar @done(20-05-12 14:15)
     Component that will represent user profile image
       Features:
         ✔ Customizable size @done(20-04-28 17:07)
@@ -68,8 +68,6 @@ Basic Components:
 
   ☐ Breadcrumb
 
-  ☐ BreadcrumbItem
-
   ☐ Backdrop
 
   ☐ Modal
@@ -79,19 +77,16 @@ Basic Components:
   ☐ Collapse
 
   ☐ Dropdown
+    Features:
+      ✔ Display container that will block interaction with the hole page @done(20-05-13 14:24)
 
   ☐ Accordion
 
   ☐ Drawer
 
 Utility Components:
-  ☐ Grid
+  ✔ Grid @done(20-05-12 14:15)
     Features:
-      ☐ Responsive grid
-        Responsive grid for sm/md/lg/xl
-      ☐ Spacing between grid items
-
-  ☐ Hidden
-
-Utility Hooks:
-  ☐ useImageLoaded
+      ✔ Responsive grid @done(20-05-12 14:13)
+        Responsive grid for xs/sm/md/lg/xl
+      ✔ Spacing between grid items @done(20-05-08 21:59)

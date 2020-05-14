@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { classnames } from 'tailwindcss-classnames';
-import { TAvatarGroupProps, TAvatarProps, TEditableClass } from '../types';
+import { TAvatarGroupProps, TEditableClass } from '../types';
 import { validChildren } from '../utils';
-import Avatar from '../Avatar';
+import { Avatar } from './Avatar';
 
-const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
+export const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
   React.ComponentProps<'div'>> = props => {
   const {
     componentSize,
@@ -34,7 +34,7 @@ const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
       React.isValidElement(child)
     ) {
       const isFirstChild = index === 0;
-      const cloneAvatar = (props: TAvatarProps) =>
+      const ClonedAvatar: React.FunctionComponent<TAvatarGroupProps> = props =>
         React.cloneElement(child, { ...child.props, ...props });
       const avatarItemClass = classnames('relative', {
         ['-ml-6']: !isFirstChild,
@@ -45,7 +45,7 @@ const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
           className={avatarItemClass}
           style={{ zIndex: avatarsCount - index }}
         >
-          {cloneAvatar({ componentSize })}
+          <ClonedAvatar componentSize={componentSize} />
         </div>
       );
     } else if (showMax && index === showMax) {
@@ -72,9 +72,18 @@ const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
   );
 };
 
-AvatarGroup.defaultProps = {
+const defaultProps = {
   showMax: 5,
   componentSize: 'md',
 } as TAvatarGroupProps;
+
+AvatarGroup.defaultProps = defaultProps;
+
+export const AvatarGroupDummyComponent: React.FunctionComponent<TAvatarGroupProps> = props => {
+  const { componentSize, showMax, children, classes, ...otherProps } = props;
+  return <div {...otherProps} />;
+};
+
+AvatarGroupDummyComponent.defaultProps = defaultProps;
 
 export default AvatarGroup;

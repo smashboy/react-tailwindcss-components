@@ -192,6 +192,8 @@ export type TGridItemSize =
 
 export type TGridProps = {
   item?: boolean;
+  spacing?: number;
+  xs?: TGridItemSize;
   sm?: TGridItemSize;
   md?: TGridItemSize;
   lg?: TGridItemSize;
@@ -200,12 +202,62 @@ export type TGridProps = {
     container?: {
       disableDefault?: {
         display?: boolean;
+        width?: boolean;
+        justifyContent?: boolean;
+        alignItems?: boolean;
+        flexWrap?: boolean;
+        flexDirection?: boolean;
       };
       custom?: string;
     };
     item?: {
       disableDefault?: {
         display?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};
+
+export type TBackdropProps = {
+  show?: boolean;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        position?: boolean;
+        display?: boolean;
+        top?: boolean;
+        left?: boolean;
+        right?: boolean;
+        bottom?: boolean;
+        backgroundColor?: boolean;
+        opacity?: boolean;
+        zIndex?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};
+
+export type TModalProps = {
+  show?: boolean;
+  componentSize?: TComponentSize;
+  hideBackdrop?: boolean;
+  onBackdropClick?: () => void;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        position?: boolean;
+        top?: boolean;
+        left?: boolean;
+        right?: boolean;
+        bottom?: boolean;
+        zIndex?: boolean;
+        display?: boolean;
+        justifyContent?: boolean;
+        alignItems?: boolean;
+        overflowX?: boolean;
+        overflowY?: boolean;
       };
       custom?: string;
     };

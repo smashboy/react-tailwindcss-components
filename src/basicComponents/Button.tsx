@@ -3,7 +3,7 @@ import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TEditableClass, TButtonProps } from '../types';
 import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
-const Button: React.FunctionComponent<TButtonProps &
+export const Button: React.FunctionComponent<TButtonProps &
   React.ComponentProps<'a' | 'button' | 'span'>> = props => {
   const {
     children,
@@ -91,5 +91,3 @@ Button.defaultProps = {
   fullWidth: false,
   component: 'button',
 } as Partial<TButtonProps>;
-
-export default Button;

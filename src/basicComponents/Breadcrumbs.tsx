@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TBreadcrumbsProps } from '../types';
 
-const Breadcrumbs: React.FunctionComponent<TBreadcrumbsProps &
+export const Breadcrumbs: React.FunctionComponent<TBreadcrumbsProps &
   React.ComponentProps<'nav'>> = props => {
   const { children, className, ...otherProps } = props;
 
@@ -16,4 +16,13 @@ Breadcrumbs.defaultProps = {
   separator: '/',
 } as Partial<TBreadcrumbsProps>;
 
-export default Breadcrumbs;
+// const BreadcrumbItem: React.FunctionComponent<React.ComponentProps<
+//   'li'
+// >> = props => {
+//   const { children, className, ...otherProps } = props;
+//   return (
+//     <li className={`${className || ''}`} {...otherProps}>
+//       {children}
+//     </li>
+//   );
+// };

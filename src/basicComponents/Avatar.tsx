@@ -3,7 +3,7 @@ import { classnames, TClasses, TBorderRadius } from 'tailwindcss-classnames';
 import { useImageLoaded } from '../utils';
 import { TEditableClass, TAvatarProps } from '../types';
 
-const Avatar: React.FunctionComponent<TAvatarProps &
+export const Avatar: React.FunctionComponent<TAvatarProps &
   React.ComponentProps<'img'>> = props => {
   const {
     variant,
@@ -138,7 +138,8 @@ const Avatar: React.FunctionComponent<TAvatarProps &
                 {...otherProps}
               />
             )) ||
-              fallback || ''}
+              fallback ||
+              ''}
           </div>
         )}
       </div>
@@ -149,10 +150,24 @@ const Avatar: React.FunctionComponent<TAvatarProps &
   );
 };
 
-Avatar.defaultProps = {
+const defaultProps = {
   componentSize: 'md',
   variant: 'circle',
   withBadge: false,
 } as Partial<TAvatarProps>;
 
-export default Avatar;
+Avatar.defaultProps = defaultProps;
+
+export const AvatarDummyComponent: React.FunctionComponent<TAvatarProps> = props => {
+  const {
+    variant,
+    componentSize,
+    classes,
+    fallback,
+    fallbackSrc,
+    ...otherProps
+  } = props;
+  return <div {...otherProps} />;
+};
+
+AvatarDummyComponent.defaultProps = defaultProps;

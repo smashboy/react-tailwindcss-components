@@ -4,7 +4,7 @@ import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TFieldProps, TEditableClass } from '../types';
 import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
-const Field: React.FunctionComponent<TFieldProps &
+export const Field: React.FunctionComponent<TFieldProps &
   React.ComponentProps<'input' | 'select' | 'textarea'>> = props => {
   const {
     disabled,
@@ -128,7 +128,7 @@ const Field: React.FunctionComponent<TFieldProps &
   );
 };
 
-Field.defaultProps = {
+const defaultProps = {
   disabled: false,
   fullWidth: false,
   resize: 'none',
@@ -138,4 +138,24 @@ Field.defaultProps = {
   component: 'input',
 } as Partial<TFieldProps>;
 
-export default Field;
+Field.defaultProps = defaultProps;
+
+export const FieldDummyComponent: React.FunctionComponent<TFieldProps> = props => {
+  const {
+    disabled,
+    fullWidth,
+    componentSize,
+    component,
+    startElement,
+    endElement,
+    rowsMin,
+    rowsMax,
+    resize,
+    multipleSelect,
+    classes,
+    ...otherProps
+  } = props;
+  return <div {...otherProps} />;
+};
+
+FieldDummyComponent.defaultProps = defaultProps;

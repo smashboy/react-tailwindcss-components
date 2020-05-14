@@ -3,7 +3,7 @@ import { usePopper } from 'react-popper';
 import { classnames, TClasses, groupHover } from 'tailwindcss-classnames';
 import { TTooltipProps, TEditableClass } from '../types';
 
-const Tooltip: React.FunctionComponent<TTooltipProps &
+export const Tooltip: React.FunctionComponent<TTooltipProps &
   React.ComponentProps<'div'>> = props => {
   const {
     children,
@@ -95,16 +95,15 @@ const Tooltip: React.FunctionComponent<TTooltipProps &
     if (triggerEvent === 'none') return;
 
     if (triggerEvent === 'hover') {
-      internalEvent === 'onMouseOver'
+      return internalEvent === 'onMouseOver'
         ? setShowTooltip(true)
         : internalEvent === 'onMouseOut'
         ? setShowTooltip(false)
         : null;
-      return;
     }
 
     if (triggerEvent === 'focus') {
-      internalEvent === 'onFocus'
+      return internalEvent === 'onFocus'
         ? setShowTooltip(true)
         : internalEvent === 'onBlur'
         ? setShowTooltip(false)
@@ -216,7 +215,7 @@ const Tooltip: React.FunctionComponent<TTooltipProps &
   );
 };
 
-Tooltip.defaultProps = {
+const defaultProps = {
   withArrow: false,
   placement: 'bottom',
   componentSize: 'md',
@@ -225,4 +224,22 @@ Tooltip.defaultProps = {
   showByDefault: false,
 } as Partial<TTooltipProps>;
 
-export default Tooltip;
+Tooltip.defaultProps = defaultProps;
+
+export const TooltipDummyComponent: React.FunctionComponent<TTooltipProps> = props => {
+  const {
+    children,
+    classes,
+    componentSize,
+    withArrow,
+    label,
+    spacing,
+    placement,
+    triggerEvent,
+    showByDefault,
+    ...otherProps
+  } = props;
+  return <div {...otherProps} />;
+};
+
+TooltipDummyComponent.defaultProps = defaultProps;
