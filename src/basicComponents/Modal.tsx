@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classnames } from 'tailwindcss-classnames';
+import { classnames, TClasses } from 'tailwindcss-classnames';
 import { Backdrop } from './Backdrop';
 import { TModalProps, TEditableClass } from '../types';
 
@@ -40,27 +40,39 @@ export const Modal: React.FunctionComponent<TModalProps &
     'items-center': !classes?.root?.disableDefault?.alignItems,
   };
 
-  // const MODAL_STYLE: TEditableClass = {};
+  const MODAL_STYLE: TEditableClass = {
+    'bg-white': !classes?.modal?.disableDefault?.backgroundColor,
+    shadow: !classes?.modal?.disableDefault?.boxShadow,
+  };
+
+  const MODAL_SIZE: TClasses[] =
+    (componentSize === 'xs' && ['p-2', 'max-w-full', 'w-full']) ||
+    (componentSize === 'sm' && ['p-4', 'max-w-screen-sm', 'w-full']) ||
+    (componentSize === 'md' && ['p-6', 'max-w-screen-md', 'w-full']) ||
+    (componentSize === 'lg' && ['p-8', 'max-w-screen-lg', 'w-full']) ||
+    (componentSize === 'xl' && ['p-10', 'max-w-screen-xl', 'w-full']) ||
+    [];
 
   const rootClass = classnames(ROOT_STYLE);
   const customRootClass = classes?.root?.custom || '';
 
+  const modalClass = classnames(MODAL_STYLE, ...MODAL_SIZE);
+  const customModalClass = classes?.modal?.custom || '';
+
   return (
     <React.Fragment>
       {show ? (
-        <React.Fragment>
-          <div className={`${rootClass} ${customRootClass} ${className || ''}`}>
-            <div
-              ref={modalRef}
-              className="relative h-56 w-56 bg-red-400"
-              {...otherProps}
-            >
-              {children}
-            </div>
+        <div className={`${rootClass} ${customRootClass} ${className || ''}`}>
+          <div
+            ref={modalRef}
+            className={`${modalClass} ${customModalClass}`}
+            {...otherProps}
+          >
+            {children}
           </div>
-          <Backdrop show={show} />
-        </React.Fragment>
+        </div>
       ) : null}
+      <Backdrop show={show} />
     </React.Fragment>
   );
 };
@@ -69,8 +81,6 @@ const defaultProps = {
   show: false,
   componentSize: 'md',
   hideBackdrop: false,
-  disableBackdrop: false,
-  disableBackdropClick: false,
 } as Partial<TModalProps>;
 
 Modal.defaultProps = defaultProps;

@@ -61,6 +61,7 @@ Basic Components:
         ✔ Override default css classes with custom @done(20-04-29 18:04)
         ✔ Triggers @done(20-05-03 14:56)
           Define the types of events that cause a tooltip to show.
+        ☐ Click trigger
         ✔ With Arrow @done(20-05-03 14:32)
       Issues:
         ✔ Arrow position on first show up is broken @done(20-05-03 13:43)
@@ -75,13 +76,13 @@ Basic Components:
       ✔ Override default css classes with custom @done(20-05-14 15:03)
       ✔ Ability to toggle page scroll @done(20-05-14 16:02)
 
-  ☐ Modal
+  ✔ Modal @done(20-05-16 15:19)
     Features:
-      ☐ Show modal that will block interaction with the hole page
+      ✔ Show modal that will block interaction with the hole page @done(20-05-16 15:19)
       ✔ Option to hide backdrop @done(20-05-14 15:03)
       ✔ Hide modal on backdrop click @done(20-05-14 15:03)
-      ☐ Customizable size
-      ☐ Override default css classes with custom
+      ✔ Customizable size @done(20-05-16 15:19)
+      ✔ Override default css classes with custom @done(20-05-16 15:19)
 
   ☐ Tabs
 

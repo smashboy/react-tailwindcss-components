@@ -18,7 +18,10 @@ export const ModalPlayground = () => {
       >
         Show Modal
       </Button>
-      <Modal onBackdropClick={() => setShow(false)} show={show}>
+      <Modal
+        onBackdropClick={() => setShow(false)}
+        show={show}
+      >
         <h2>TEST MODAL</h2>
       </Modal>
     </React.Fragment>
