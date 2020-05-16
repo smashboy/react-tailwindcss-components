@@ -11,9 +11,9 @@ export type TButtonProps = {
   fullWidth?: boolean;
   componentSize?: TComponentSize;
   component?: TButtonComponent;
-  startIcon?: React.ReactNode;
-  centerIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
+  startIcon?: React.FunctionComponent;
+  centerIcon?: React.FunctionComponent;
+  endIcon?: React.FunctionComponent;
   classes?: {
     root?: {
       disableDefault?: {
@@ -106,8 +106,8 @@ export type TFieldProps = {
   disabled?: boolean;
   componentSize?: TComponentSize;
   fullWidth?: boolean;
-  startElement?: React.ReactNode;
-  endElement?: React.ReactNode;
+  startElement?: React.FunctionComponent;
+  endElement?: React.FunctionComponent;
   component?: 'input' | 'select' | 'textarea';
   resize?: 'none' | 'vertical' | 'horizontal' | 'both' | 'auto';
   rowsMax?: number;
@@ -133,8 +133,9 @@ export type TFieldProps = {
   };
 };
 
-export type TTooltipProps = {
-  label: string;
+export type TPopoverProps = {
+  label?: string;
+  content?: React.FunctionComponent;
   withArrow?: boolean;
   spacing?: number;
   placement?: 'top' | 'bottom' | 'right' | 'left';
@@ -257,6 +258,13 @@ export type TModalProps = {
         display?: boolean;
         justifyContent?: boolean;
         alignItems?: boolean;
+      };
+      custom?: string;
+    };
+    modal?: {
+      disableDefault?: {
+        backgroundColor?: boolean;
+        boxShadow?: boolean;
       };
       custom?: string;
     };

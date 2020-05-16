@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { usePopper } from 'react-popper';
 import { classnames, TClasses, groupHover } from 'tailwindcss-classnames';
-import { TTooltipProps, TEditableClass } from '../types';
+import { TPopoverProps, TEditableClass } from '../types';
 
-export const Tooltip: React.FunctionComponent<TTooltipProps &
+export const Popover: React.FunctionComponent<TPopoverProps &
   React.ComponentProps<'div'>> = props => {
   const {
     children,
@@ -12,6 +12,7 @@ export const Tooltip: React.FunctionComponent<TTooltipProps &
     className,
     withArrow,
     label,
+    content,
     spacing,
     placement,
     triggerEvent,
@@ -23,6 +24,8 @@ export const Tooltip: React.FunctionComponent<TTooltipProps &
   const [referenceElement, setReferenceElement] = React.useState(null);
   const [popperElement, setPopperElement] = React.useState(null);
   const [arrowElement, setArrowElement] = React.useState(null);
+
+  const Content = content;
 
   const ADDITIONAL_TOOLTIP_SPACING: number =
     ((componentSize === 'lg' || componentSize === 'xl') && 10) || 6;
@@ -189,7 +192,7 @@ export const Tooltip: React.FunctionComponent<TTooltipProps &
         className={`${labelClass} ${customLableClass}`}
         {...attributes.popper}
       >
-        {label}
+        {label || (Content ? <Content /> : null)}
         {/* ARROW */}
         {(withArrow && (
           <div
@@ -221,17 +224,18 @@ const defaultProps = {
   componentSize: 'md',
   spacing: 5,
   triggerEvent: 'hover',
-  showByDefault: false,
-} as Partial<TTooltipProps>;
+  showByDefault: true,
+} as Partial<TPopoverProps>;
 
-Tooltip.defaultProps = defaultProps;
+Popover.defaultProps = defaultProps;
 
-export const TooltipDummyComponent: React.FunctionComponent<TTooltipProps> = props => {
+export const PopoverDummyComponent: React.FunctionComponent<TPopoverProps> = props => {
   const {
     children,
     classes,
     componentSize,
     withArrow,
+    content,
     label,
     spacing,
     placement,
@@ -242,4 +246,4 @@ export const TooltipDummyComponent: React.FunctionComponent<TTooltipProps> = pro
   return <div {...otherProps} />;
 };
 
-TooltipDummyComponent.defaultProps = defaultProps;
+PopoverDummyComponent.defaultProps = defaultProps;

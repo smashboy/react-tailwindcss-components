@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, GridDummyComponent } from '../../src/basicComponents/Grid';
+import { Grid, GridDummyComponent } from '../../src/utilityComponents/Grid';
 
 export default {
   title: 'Components API|Utility Components/Grid',

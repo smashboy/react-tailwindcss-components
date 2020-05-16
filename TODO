@@ -51,7 +51,7 @@ Basic Components:
           Field component has dead areas that are not interactive where they should be
         ✔ Multiple select support @done(20-05-01 14:23)
 
-  ☐ Tooltip @started(20-04-28 23:34)
+  ☐ Popover @started(20-04-28 23:34)
     Display informative text when users hover over, focus on, or tap an element.
       Features:
         ✔ Placement @done(20-04-29 16:36)
@@ -87,8 +87,6 @@ Basic Components:
   ☐ Tabs
 
   ☐ Collapse
-
-  ☐ Dropdown
 
   ☐ Accordion
 
