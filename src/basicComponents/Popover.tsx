@@ -12,22 +12,22 @@ export const Popover: React.FunctionComponent<TPopoverProps &
     className,
     withArrow,
     label,
-    content,
+    render,
     spacing,
     placement,
     triggerEvent,
-    showByDefault,
+    show,
     ...otherProps
   } = props;
 
-  const [showTooltip, setShowTooltip] = React.useState(showByDefault);
+  const [showPopover, setShowPopover] = React.useState(show || false);
   const [referenceElement, setReferenceElement] = React.useState(null);
   const [popperElement, setPopperElement] = React.useState(null);
   const [arrowElement, setArrowElement] = React.useState(null);
 
-  const Content = content;
+  const Content = render;
 
-  const ADDITIONAL_TOOLTIP_SPACING: number =
+  const ADDITIONAL_POPOVER_SPACING: number =
     ((componentSize === 'lg' || componentSize === 'xl') && 10) || 6;
 
   // @ts-ignore
@@ -41,7 +41,7 @@ export const Popover: React.FunctionComponent<TPopoverProps &
           offset: [
             0,
             withArrow && spacing
-              ? spacing + ADDITIONAL_TOOLTIP_SPACING
+              ? spacing + ADDITIONAL_POPOVER_SPACING
               : spacing,
           ],
         },
@@ -92,25 +92,38 @@ export const Popover: React.FunctionComponent<TPopoverProps &
     (componentSize === 'xl' && ['w-5', 'h-5']) ||
     [];
 
-  type TInternalEvent = 'onMouseOver' | 'onMouseOut' | 'onFocus' | 'onBlur';
+  type TInternalEvent =
+    | 'onMouseOver'
+    | 'onMouseOut'
+    | 'onFocus'
+    | 'onBlur'
+    | 'onClick';
 
-  const showTooltipHandler = (internalEvent: TInternalEvent) => {
+  const showPopoverHandler = (internalEvent: TInternalEvent) => {
     if (triggerEvent === 'none') return;
 
     if (triggerEvent === 'hover') {
-      return internalEvent === 'onMouseOver'
-        ? setShowTooltip(true)
-        : internalEvent === 'onMouseOut'
-        ? setShowTooltip(false)
-        : null;
+      if (internalEvent === 'onMouseOver') {
+        setShowPopover(true);
+      } else if (internalEvent === 'onMouseOut') {
+        setShowPopover(false);
+      }
     }
 
     if (triggerEvent === 'focus') {
-      return internalEvent === 'onFocus'
-        ? setShowTooltip(true)
-        : internalEvent === 'onBlur'
-        ? setShowTooltip(false)
-        : null;
+      if (internalEvent === 'onFocus') {
+        setShowPopover(true);
+      } else if (internalEvent === 'onBlur') {
+        setShowPopover(false);
+      }
+    }
+
+    if (triggerEvent === 'click' && internalEvent === 'onClick') {
+      if (showPopover === true) {
+        return setShowPopover(false);
+      } else {
+        return setShowPopover(true);
+      }
     }
   };
 
@@ -161,7 +174,7 @@ export const Popover: React.FunctionComponent<TPopoverProps &
     ...LABEL_SIZE,
     groupHover('visible'),
     {
-      ['invisible']: !showTooltip,
+      ['invisible']: !showPopover,
     }
   );
   const customLableClass = classes?.label?.custom || '';
@@ -176,15 +189,16 @@ export const Popover: React.FunctionComponent<TPopoverProps &
         className={`${rootClass} ${customRootClass} ${className || ''}`}
         // @ts-ignore
         ref={setReferenceElement}
-        onMouseOver={() => showTooltipHandler('onMouseOver')}
-        onMouseOut={() => showTooltipHandler('onMouseOut')}
-        onFocus={() => showTooltipHandler('onFocus')}
-        onBlur={() => showTooltipHandler('onBlur')}
+        onClick={() => showPopoverHandler('onClick')}
+        onMouseOver={() => showPopoverHandler('onMouseOver')}
+        onMouseOut={() => showPopoverHandler('onMouseOut')}
+        onFocus={() => showPopoverHandler('onFocus')}
+        onBlur={() => showPopoverHandler('onBlur')}
         {...otherProps}
       >
         {children}
       </div>
-      {/* ACTUAL TOOLTIP */}
+      {/* ACTUAL POPOVER */}
       <div
         // @ts-ignore
         ref={setPopperElement}
@@ -192,7 +206,10 @@ export const Popover: React.FunctionComponent<TPopoverProps &
         className={`${labelClass} ${customLableClass}`}
         {...attributes.popper}
       >
-        {label || (Content ? <Content /> : null)}
+        {label ||
+          (Content ? (
+            <Content show={showPopover} setShow={setShowPopover} />
+          ) : null)}
         {/* ARROW */}
         {(withArrow && (
           <div
@@ -224,7 +241,7 @@ const defaultProps = {
   componentSize: 'md',
   spacing: 5,
   triggerEvent: 'hover',
-  showByDefault: true,
+  show: false,
 } as Partial<TPopoverProps>;
 
 Popover.defaultProps = defaultProps;
@@ -235,12 +252,12 @@ export const PopoverDummyComponent: React.FunctionComponent<TPopoverProps> = pro
     classes,
     componentSize,
     withArrow,
-    content,
+    render,
     label,
     spacing,
     placement,
     triggerEvent,
-    showByDefault,
+    show,
     ...otherProps
   } = props;
   return <div {...otherProps} />;

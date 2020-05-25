@@ -135,13 +135,16 @@ export type TFieldProps = {
 
 export type TPopoverProps = {
   label?: string;
-  content?: React.FunctionComponent;
+  render?: React.FunctionComponent<{
+    show: boolean;
+    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  }>;
   withArrow?: boolean;
   spacing?: number;
   placement?: 'top' | 'bottom' | 'right' | 'left';
   componentSize?: TComponentSize;
-  triggerEvent?: 'focus' | 'hover' | 'none';
-  showByDefault?: boolean;
+  triggerEvent?: 'focus' | 'hover' | 'click' | 'none';
+  show?: boolean;
   classes?: {
     root?: {
       disableDefault?: {

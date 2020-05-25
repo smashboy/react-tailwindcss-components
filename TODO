@@ -34,7 +34,7 @@ Basic Components:
           Add ability for user to display custom element or just a string instead of counter
       Issues:
 
-  ☐ Field
+  ✔ Field @done(20-05-16 16:07)
     Field represents data inputs like input/select/textarea
       Features:
         ✔ Field can be disabled @done(20-04-28 17:33)
@@ -61,7 +61,8 @@ Basic Components:
         ✔ Override default css classes with custom @done(20-04-29 18:04)
         ✔ Triggers @done(20-05-03 14:56)
           Define the types of events that cause a tooltip to show.
-        ☐ Click trigger
+        ✔ Click trigger @done(20-05-25 12:56)
+        ✔ Render function for complex cases @done(20-05-25 12:56)
         ✔ With Arrow @done(20-05-03 14:32)
       Issues:
         ✔ Arrow position on first show up is broken @done(20-05-03 13:43)
@@ -91,6 +92,8 @@ Basic Components:
   ☐ Accordion
 
   ☐ Drawer
+
+  ☐ Divider
 
 Utility Components:
   ✔ Grid @done(20-05-12 14:15)

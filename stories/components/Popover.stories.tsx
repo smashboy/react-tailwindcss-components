@@ -4,19 +4,20 @@ import {
   Popover,
   PopoverDummyComponent,
 } from '../../src/basicComponents/Popover';
+import { Avatar } from '../../src/basicComponents/Avatar';
 
 export default {
   title: 'Components API|Basic Components/Popover',
   component: PopoverDummyComponent,
 };
 
-export const TooltipPlayground = () => (
-  <Popover label="tooltip" placement="right" withArrow>
+export const PopoverPlayground = () => (
+  <Popover label="popover" placement="right" withArrow>
     <Button className="bg-green-400 text-white rounded">Hover Me</Button>
   </Popover>
 );
 
-export const TooltipPlacement = () => (
+export const PopoverPlacement = () => (
   <React.Fragment>
     <Popover label="top" placement="top" withArrow>
       <Button className="bg-green-400 text-white rounded">Top</Button>
@@ -33,7 +34,7 @@ export const TooltipPlacement = () => (
   </React.Fragment>
 );
 
-export const TooltipTriggerEvent = () => (
+export const PopoverTriggerEvent = () => (
   <React.Fragment>
     <Popover label="Hover Event">
       <Button className="bg-green-400 text-white rounded">Hover</Button>
@@ -47,7 +48,7 @@ export const TooltipTriggerEvent = () => (
   </React.Fragment>
 );
 
-export const TooltipSize = () => (
+export const PopoverSize = () => (
   <React.Fragment>
     <Popover label="Extra small" componentSize="xs">
       <Button className="bg-green-400 text-white rounded">XS</Button>
@@ -67,11 +68,10 @@ export const TooltipSize = () => (
   </React.Fragment>
 );
 
-export const StyledTooltip = () => (
+export const StyledPopover = () => (
   <Popover
     label="tooltip boiz"
-    placement="bottom"
-    className="mr-2"
+    className="m-4"
     withArrow
     classes={{
       label: {
@@ -85,5 +85,36 @@ export const StyledTooltip = () => (
     }}
   >
     <Button className="bg-green-400 text-white rounded">Bottom</Button>
+  </Popover>
+);
+
+export const ComplexPopover = () => (
+  <Popover
+    className="m-4"
+    triggerEvent="click"
+    classes={{
+      label: {
+        disableDefault: { backgroundColor: true },
+        custom: 'rounded bg-gray-400',
+      },
+    }}
+    render={({ setShow }) => (
+      <div className="p-4 flex flex-wrap justify-center">
+        <Avatar
+          src="https://bit.ly/dan-abramov"
+          className="mb-2"
+          componentSize="sm"
+        />
+        <Button
+          onClick={() => setShow(false)}
+          className="bg-red-400 rounded"
+          fullWidth
+        >
+          Delete
+        </Button>
+      </div>
+    )}
+  >
+    <Button className="bg-green-400 text-white rounded">Complex</Button>
   </Popover>
 );
