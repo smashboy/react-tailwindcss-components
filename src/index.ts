@@ -13,3 +13,5 @@ export { Grid } from './utilityComponents/Grid';
 export { Backdrop } from './basicComponents/Backdrop';
 
 export { Breadcrumbs } from './basicComponents/Breadcrumbs';
+
+export { Divider } from './basicComponents/Divider';

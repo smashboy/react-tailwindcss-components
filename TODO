@@ -51,7 +51,7 @@ Basic Components:
           Field component has dead areas that are not interactive where they should be
         ✔ Multiple select support @done(20-05-01 14:23)
 
-  ☐ Popover @started(20-04-28 23:34)
+  ✔ Popover @started(20-04-28 23:34) @done(20-05-25 13:32) @lasted(3w5d13h58m51s)
     Display informative text when users hover over, focus on, or tap an element.
       Features:
         ✔ Placement @done(20-04-29 16:36)
@@ -93,7 +93,9 @@ Basic Components:
 
   ☐ Drawer
 
-  ☐ Divider
+  ✔ Divider @done(20-05-25 17:18)
+    Featrues:
+      ✔ Vertical and horizontal orientation @done(20-05-25 17:18)
 
 Utility Components:
   ✔ Grid @done(20-05-12 14:15)

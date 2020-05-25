@@ -4,13 +4,12 @@ import { TClasses } from 'tailwindcss-classnames';
 export type TEditableClass = { [k in TClasses]?: boolean | undefined };
 export type TComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'custom';
 
-export type TButtonComponent = 'a' | 'button' | 'span';
 export type TButtonProps = {
   disabled?: boolean;
   href?: string;
   fullWidth?: boolean;
   componentSize?: TComponentSize;
-  component?: TButtonComponent;
+  component?: 'a' | 'button' | 'span';
   startIcon?: React.FunctionComponent;
   centerIcon?: React.FunctionComponent;
   endIcon?: React.FunctionComponent;
@@ -268,6 +267,22 @@ export type TModalProps = {
       disableDefault?: {
         backgroundColor?: boolean;
         boxShadow?: boolean;
+        width?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};
+
+export type TDividerProps = {
+  orientation?: 'vertical' | 'horizontal';
+  component?: React.ElementType;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        borderWidth?: boolean;
+        margin?: boolean;
+        backgroundColor?: boolean;
       };
       custom?: string;
     };

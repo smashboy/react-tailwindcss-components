@@ -45,14 +45,15 @@ export const Modal = React.forwardRef<
   const MODAL_STYLE: TEditableClass = {
     'bg-white': !classes?.modal?.disableDefault?.backgroundColor,
     shadow: !classes?.modal?.disableDefault?.boxShadow,
+    'w-full': !classes?.modal?.disableDefault?.width,
   };
 
   const MODAL_SIZE: TClasses[] =
-    (componentSize === 'xs' && ['p-2', 'max-w-full', 'w-full']) ||
-    (componentSize === 'sm' && ['p-4', 'max-w-screen-sm', 'w-full']) ||
-    (componentSize === 'md' && ['p-6', 'max-w-screen-md', 'w-full']) ||
-    (componentSize === 'lg' && ['p-8', 'max-w-screen-lg', 'w-full']) ||
-    (componentSize === 'xl' && ['p-10', 'max-w-screen-xl', 'w-full']) ||
+    (componentSize === 'xs' && ['p-2', 'max-w-full']) ||
+    (componentSize === 'sm' && ['p-4', 'max-w-screen-sm']) ||
+    (componentSize === 'md' && ['p-6', 'max-w-screen-md']) ||
+    (componentSize === 'lg' && ['p-8', 'max-w-screen-lg']) ||
+    (componentSize === 'xl' && ['p-10', 'max-w-screen-xl']) ||
     [];
 
   const rootClass = classnames(ROOT_STYLE);
