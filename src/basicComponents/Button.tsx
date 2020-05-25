@@ -3,8 +3,10 @@ import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TEditableClass, TButtonProps } from '../types';
 import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
-export const Button: React.FunctionComponent<TButtonProps &
-  React.ComponentProps<'a' | 'button' | 'span'>> = props => {
+export const Button = React.forwardRef<
+  HTMLButtonElement | HTMLSpanElement | HTMLLinkElement,
+  TButtonProps & React.ComponentProps<'a' | 'button' | 'span'>
+>((props, ref) => {
   const {
     children,
     disabled,
@@ -75,6 +77,7 @@ export const Button: React.FunctionComponent<TButtonProps &
   return (
     // @ts-ignore
     <ComponentTag
+      ref={ref}
       className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
         ''}`}
       href={href && href}
@@ -83,7 +86,7 @@ export const Button: React.FunctionComponent<TButtonProps &
       {CHILDREN_WRAPPER}
     </ComponentTag>
   );
-};
+});
 
 Button.defaultProps = {
   disabled: false,
@@ -91,3 +94,20 @@ Button.defaultProps = {
   fullWidth: false,
   component: 'button',
 } as Partial<TButtonProps>;
+
+export const ButtonDummyComponent: React.FunctionComponent<TButtonProps> = props => {
+  const {
+    children,
+    disabled,
+    href,
+    componentSize,
+    fullWidth,
+    component,
+    classes,
+    startIcon,
+    centerIcon,
+    endIcon,
+    ...otherProps
+  } = props;
+  return <div {...otherProps} />;
+};

@@ -2,8 +2,10 @@ import * as React from 'react';
 import { classnames } from 'tailwindcss-classnames';
 import { TBackdropProps, TEditableClass } from '../types';
 
-export const Backdrop: React.FunctionComponent<TBackdropProps &
-  React.ComponentProps<'div'>> = props => {
+export const Backdrop = React.forwardRef<
+  HTMLDivElement,
+  TBackdropProps & React.ComponentProps<'div'>
+>((props, ref) => {
   const {
     show,
     allowScroll,
@@ -43,6 +45,7 @@ export const Backdrop: React.FunctionComponent<TBackdropProps &
     <React.Fragment>
       {show ? (
         <div
+          ref={ref}
           className={`${rootClass} ${customRootClass} ${className || ''}`}
           {...otherProps}
         >
@@ -51,7 +54,7 @@ export const Backdrop: React.FunctionComponent<TBackdropProps &
       ) : null}
     </React.Fragment>
   );
-};
+});
 
 const defaultProps = {
   show: false,

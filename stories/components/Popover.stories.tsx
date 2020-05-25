@@ -42,6 +42,9 @@ export const PopoverTriggerEvent = () => (
     <Popover label="Focus Event" className="ml-2" triggerEvent="focus">
       <Button className="bg-green-400 text-white rounded">Focus</Button>
     </Popover>
+    <Popover label="Click Event" className="ml-2" triggerEvent="click">
+      <Button className="bg-green-400 text-white rounded">Click</Button>
+    </Popover>
     <Popover label="none" className="ml-2" triggerEvent="none">
       <Button className="bg-green-400 text-white rounded">None</Button>
     </Popover>

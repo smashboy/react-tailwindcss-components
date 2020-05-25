@@ -4,8 +4,10 @@ import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TFieldProps, TEditableClass } from '../types';
 import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
-export const Field: React.FunctionComponent<TFieldProps &
-  React.ComponentProps<'input' | 'select' | 'textarea'>> = props => {
+export const Field = React.forwardRef<
+  HTMLDivElement,
+  TFieldProps & React.ComponentProps<'input' | 'select' | 'textarea'>
+>((props, ref) => {
   const {
     disabled,
     className,
@@ -72,7 +74,10 @@ export const Field: React.FunctionComponent<TFieldProps &
   const customFieldClass = classes?.field?.custom || '';
 
   return (
-    <div className={`${rootClass} ${customRootClass} ${className || ''}`}>
+    <div
+      ref={ref}
+      className={`${rootClass} ${customRootClass} ${className || ''}`}
+    >
       {startElement && <div className="mr-4">{startElement}</div>}
       {(component === 'input' && (
         // @ts-ignore
@@ -126,7 +131,7 @@ export const Field: React.FunctionComponent<TFieldProps &
       )}
     </div>
   );
-};
+});
 
 const defaultProps = {
   disabled: false,

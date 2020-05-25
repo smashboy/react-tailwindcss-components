@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { TBreadcrumbsProps } from '../types';
 
-export const Breadcrumbs: React.FunctionComponent<TBreadcrumbsProps &
-  React.ComponentProps<'nav'>> = props => {
+export const Breadcrumbs = React.forwardRef<
+  HTMLElement,
+  TBreadcrumbsProps & React.ComponentProps<'nav'>
+>((props, ref) => {
   const { children, className, ...otherProps } = props;
 
   return (
-    <nav className={`${className || ''}`} {...otherProps}>
+    <nav ref={ref} className={`${className || ''}`} {...otherProps}>
       <ol>{children}</ol>
     </nav>
   );
-};
+});
 
 Breadcrumbs.defaultProps = {
   separator: '/',

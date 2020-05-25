@@ -3,8 +3,10 @@ import { classnames, TClasses, TBorderRadius } from 'tailwindcss-classnames';
 import { useImageLoaded } from '../utils';
 import { TEditableClass, TAvatarProps } from '../types';
 
-export const Avatar: React.FunctionComponent<TAvatarProps &
-  React.ComponentProps<'img'>> = props => {
+export const Avatar = React.forwardRef<
+  HTMLDivElement,
+  TAvatarProps & React.ComponentProps<'img'>
+>((props, ref) => {
   const {
     variant,
     componentSize,
@@ -116,26 +118,25 @@ export const Avatar: React.FunctionComponent<TAvatarProps &
   const customBadgeClass = classes?.badge?.custom || '';
 
   return (
-    <div className={`${rootClass} ${customRootClass} ${className || ''}`}>
+    <div
+      ref={ref}
+      className={`${rootClass} ${customRootClass} ${className || ''}`}
+      {...otherProps}
+    >
       <div className={`${avatarClass} ${customAvatarClass}`}>
         {(imageLoaded && src && (
           <img
             src={src}
             alt={alt}
             className={`${imageClass} ${customImageClass}`}
-            {...otherProps}
           />
         )) || (
-          <div
-            className={`${fallbackClass} ${customFallbackClass}`}
-            {...otherProps}
-          >
+          <div className={`${fallbackClass} ${customFallbackClass}`}>
             {(fallbackSrc && (
               <img
                 src={fallbackSrc}
                 alt={alt}
                 className={`${imageClass} ${customImageClass}`}
-                {...otherProps}
               />
             )) ||
               fallback ||
@@ -148,7 +149,7 @@ export const Avatar: React.FunctionComponent<TAvatarProps &
       )) || <React.Fragment />}
     </div>
   );
-};
+});
 
 const defaultProps = {
   componentSize: 'md',

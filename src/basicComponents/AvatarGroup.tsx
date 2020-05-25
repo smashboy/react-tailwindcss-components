@@ -4,8 +4,10 @@ import { TAvatarGroupProps, TEditableClass } from '../types';
 import { validChildren } from '../utils';
 import { Avatar } from './Avatar';
 
-export const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
-  React.ComponentProps<'div'>> = props => {
+export const AvatarGroup = React.forwardRef<
+  HTMLDivElement,
+  TAvatarGroupProps & React.ComponentProps<'div'>
+>((props, ref) => {
   const {
     componentSize,
     showMax,
@@ -65,12 +67,13 @@ export const AvatarGroup: React.FunctionComponent<TAvatarGroupProps &
   return (
     <div
       className={`${rootClass} ${customRootClass} ${className || ''}`}
+      ref={ref}
       {...otherProps}
     >
       {clones}
     </div>
   );
-};
+});
 
 const defaultProps = {
   showMax: 5,

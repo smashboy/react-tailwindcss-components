@@ -3,8 +3,10 @@ import { classnames, TClasses } from 'tailwindcss-classnames';
 import { Backdrop } from './Backdrop';
 import { TModalProps, TEditableClass } from '../types';
 
-export const Modal: React.FunctionComponent<TModalProps &
-  React.ComponentProps<'div'>> = props => {
+export const Modal = React.forwardRef<
+  HTMLDivElement,
+  TModalProps & React.ComponentProps<'div'>
+>((props, ref) => {
   const {
     show,
     componentSize,
@@ -62,7 +64,10 @@ export const Modal: React.FunctionComponent<TModalProps &
   return (
     <React.Fragment>
       {show ? (
-        <div className={`${rootClass} ${customRootClass} ${className || ''}`}>
+        <div
+          ref={ref}
+          className={`${rootClass} ${customRootClass} ${className || ''}`}
+        >
           <div
             ref={modalRef}
             className={`${modalClass} ${customModalClass}`}
@@ -75,7 +80,7 @@ export const Modal: React.FunctionComponent<TModalProps &
       <Backdrop show={show} />
     </React.Fragment>
   );
-};
+});
 
 const defaultProps = {
   show: false,

@@ -9,8 +9,10 @@ import {
 import { TGridProps, TEditableClass } from '../types';
 import { validChildren } from '../utils';
 
-export const Grid: React.FunctionComponent<TGridProps &
-  React.ComponentProps<'div'>> = props => {
+export const Grid = React.forwardRef<
+  HTMLDivElement,
+  TGridProps & React.ComponentProps<'div'>
+>((props, ref) => {
   const {
     xs,
     sm,
@@ -55,26 +57,30 @@ export const Grid: React.FunctionComponent<TGridProps &
 
   const containerSpacing = spacing ? { margin: `-${spacing}px` } : {};
 
-  const cloneItems = () =>
-    validChildren(children).map((child, index) => {
-      if (!React.isValidElement(child)) return null;
-      const ClonedItem: React.FunctionComponent<TGridProps &
-        React.ComponentProps<'div'>> = props =>
-        React.cloneElement(child, { ...child.props, ...props });
-      const itemSpacing = spacing ? { padding: `${spacing}px` } : {};
-      return <ClonedItem key={index} style={{ ...itemSpacing }} />;
-    });
+  const ClonedItems = () => (
+    <React.Fragment>
+      {validChildren(children).map((child, index) => {
+        if (!React.isValidElement(child)) return null;
+        const ClonedItem: React.FunctionComponent<TGridProps &
+          React.ComponentProps<'div'>> = props =>
+          React.cloneElement(child, { ...child.props, ...props });
+        const itemSpacing = spacing ? { padding: `${spacing}px` } : {};
+        return <ClonedItem key={index} style={{ ...itemSpacing }} />;
+      })}
+    </React.Fragment>
+  );
 
   return (
     <div
+      ref={ref}
       className={`${applyClass} ${className || ''}`}
       style={{ ...style, ...containerSpacing }}
       {...otherProps}
     >
-      {!item ? cloneItems() : children}
+      {!item ? <ClonedItems /> : children}
     </div>
   );
-};
+});
 
 const defaultProps = {
   item: false,
