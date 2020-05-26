@@ -85,7 +85,12 @@ Basic Components:
       ✔ Customizable size @done(20-05-16 15:19)
       ✔ Override default css classes with custom @done(20-05-16 15:19)
 
-  ☐ Tabs
+  ✔ Tabs @done(20-05-26 14:12)
+    Featues:
+      ✔ On click control change tab @done(20-05-26 13:49)
+      ✔ Option to disable tab @done(20-05-26 14:06)
+      ✔ Change tab panel view depending on active tab @done(20-05-26 14:06)
+      ✔ Override default css classes with custom @done(20-05-26 14:12)
 
   ☐ Collapse
 
@@ -96,6 +101,7 @@ Basic Components:
   ✔ Divider @done(20-05-25 17:18)
     Featrues:
       ✔ Vertical and horizontal orientation @done(20-05-25 17:18)
+      ✔ Override default css classes with custom @done(20-05-26 12:02)
 
 Utility Components:
   ✔ Grid @done(20-05-12 14:15)

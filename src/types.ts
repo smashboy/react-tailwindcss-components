@@ -288,3 +288,45 @@ export type TDividerProps = {
     };
   };
 };
+
+export type TTabsProps = {
+  value: any;
+  onTabChange: (newValue: any) => void;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        display?: boolean;
+        flexWrap?: boolean;
+      };
+      custom?: string;
+    };
+    list?: {
+      disableDefault?: {
+        display?: boolean;
+        listStyleType?: boolean;
+        flexWrap?: boolean;
+        flexDirection?: boolean;
+      };
+      custom?: boolean;
+    };
+  };
+};
+
+export type TTabProps = {
+  value: any;
+  setTab?: (newValue: any) => void;
+  disabled?: boolean;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        flex?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};
+
+export type TTabPanelProps = {
+  value: any;
+  activeTab: any;
+};

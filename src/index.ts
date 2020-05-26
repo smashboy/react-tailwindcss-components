@@ -15,3 +15,5 @@ export { Backdrop } from './basicComponents/Backdrop';
 export { Breadcrumbs } from './basicComponents/Breadcrumbs';
 
 export { Divider } from './basicComponents/Divider';
+
+export { Tabs, Tab } from './basicComponents/Tabs';

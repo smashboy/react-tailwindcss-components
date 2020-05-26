@@ -10,7 +10,7 @@ export const Divider = React.forwardRef<
 
   const ElementType = component || 'hr';
 
-  const ROOT_STYLES: TEditableClass = {
+  const ROOT_STYLE: TEditableClass = {
     'border-0': !classes?.root?.disableDefault?.borderWidth,
     'm-0': !classes?.root?.disableDefault?.margin,
     'bg-gray-400': !classes?.root?.disableDefault?.backgroundColor,
@@ -21,7 +21,7 @@ export const Divider = React.forwardRef<
       ? ['w-full', 'h-px']
       : ['w-px', 'self-auto', 'h-auto'];
 
-  const rootClass = classnames(ROOT_STYLES, ...ORIENTATION_STYLE);
+  const rootClass = classnames(ROOT_STYLE, ...ORIENTATION_STYLE);
   const customRootClass = classes?.root?.custom || '';
 
   return (
