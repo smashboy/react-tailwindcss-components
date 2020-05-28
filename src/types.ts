@@ -330,3 +330,32 @@ export type TTabPanelProps = {
   value: any;
   activeTab: any;
 };
+
+export type TDrawerProps = {
+  position?: 'top' | 'right' | 'bottom' | 'left' | 'custom';
+  show?: boolean;
+  hideBackdrop?: boolean;
+  onBackdropClick?: () => void;
+  classes?: {
+    root?: {
+      disableDefault?: {
+        position?: boolean;
+        top?: boolean;
+        left?: boolean;
+        right?: boolean;
+        bottom?: boolean;
+        zIndex?: boolean;
+      };
+      custom?: string;
+    };
+    drawer?: {
+      disableDefault?: {
+        position?: boolean;
+        backgroundColor?: boolean;
+        boxShadow?: boolean;
+        zIndex?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};

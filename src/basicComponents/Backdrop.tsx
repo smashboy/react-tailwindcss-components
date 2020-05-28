@@ -34,7 +34,7 @@ export const Backdrop = React.forwardRef<
     'right-0': !classes?.root?.disableDefault?.right,
     'bottom-0': !classes?.root?.disableDefault?.bottom,
     'bg-black': !classes?.root?.disableDefault?.backgroundColor,
-    'opacity-75': !classes?.root?.disableDefault?.opacity,
+    'opacity-50': !classes?.root?.disableDefault?.opacity,
     'z-40': !classes?.root?.disableDefault?.zIndex,
   };
 

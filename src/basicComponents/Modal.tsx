@@ -64,21 +64,20 @@ export const Modal = React.forwardRef<
 
   return (
     <React.Fragment>
-      {show ? (
+      {show && (
         <div
           ref={ref}
           className={`${rootClass} ${customRootClass} ${className || ''}`}
+          {...otherProps}
         >
-          <div
-            ref={modalRef}
-            className={`${modalClass} ${customModalClass}`}
-            {...otherProps}
-          >
+          <div ref={modalRef} className={`${modalClass} ${customModalClass}`}>
             {children}
           </div>
         </div>
-      ) : null}
-      <Backdrop show={show} />
+      )}
+      <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>
+        <Backdrop show={show} />
+      </div>
     </React.Fragment>
   );
 });

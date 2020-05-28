@@ -6,3 +6,4 @@ export * from './Modal.stories';
 export * from './Popover.stories';
 export * from './Divider.stories';
 export * from './Tabs.stories';
+export * from './Drawer.stories';
