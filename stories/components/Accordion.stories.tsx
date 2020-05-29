@@ -12,13 +12,13 @@ export default {
 };
 
 export const AccordionPlayground = () => (
-  <Accordion values={['a', 'b', 'c']} defaultValues={['a', 'b']}>
+  <Accordion values={['a', 'b', 'c']} defaultValues={['a']}>
     <AccordionItem
       value="a"
       classes={{ panel: { custom: 'p-4 bg-gray-200' } }}
       headerComponent={({ isExpanded, setExpanded }) => (
         <Button
-          className="inline-flex w-full flex-wrap justify-between shadow"
+          className="inline-flex w-full justify-between shadow"
           onClick={() => setExpanded('a')}
         >
           <div>Item 1</div>
