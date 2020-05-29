@@ -359,3 +359,46 @@ export type TDrawerProps = {
     };
   };
 };
+
+export type TAccordionProps = {
+  allowMultiple?: boolean;
+  allowToggle?: boolean;
+  values: any[];
+  defaultValues: any[];
+  classes?: {
+    root?: {
+      disableDefault?: {
+        width?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};
+
+export type TAccordionItemProps = {
+  disabled?: boolean;
+  value: any;
+  headerComponent: React.FunctionComponent<{
+    isExpanded: boolean;
+    setExpanded: (value: any) => void;
+  }>;
+  classes?: {
+    root?: {
+      custom?: string;
+    };
+    header?: {
+      disableDefault?: {
+        display?: boolean;
+        width?: boolean;
+        alignItems?: boolean;
+      };
+      custom?: string;
+    };
+    panel?: {
+      disableDefault?: {
+        height?: boolean;
+      };
+      custom?: string;
+    };
+  };
+};

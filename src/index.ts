@@ -16,4 +16,6 @@ export { Breadcrumbs } from './basicComponents/Breadcrumbs';
 
 export { Divider } from './basicComponents/Divider';
 
-export { Tabs, Tab } from './basicComponents/Tabs';
+export { Tabs, Tab, TabPanel } from './basicComponents/Tabs';
+
+export { Accordion, AccordionItem } from './basicComponents/Accordion';

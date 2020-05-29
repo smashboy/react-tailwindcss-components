@@ -99,10 +99,16 @@ export const Tab = React.forwardRef<
   );
 });
 
+const tabDefaultProps = { disabled: false } as Partial<TTabProps>;
+
+Tab.defaultProps = tabDefaultProps;
+
 export const TabDummyComponent: React.FunctionComponent<TTabProps> = props => {
   const { value, classes, disabled, ...otherProps } = props;
   return <div {...otherProps} />;
 };
+
+TabDummyComponent.defaultProps = tabDefaultProps;
 
 export const TabPanel = React.forwardRef<
   HTMLDivElement,

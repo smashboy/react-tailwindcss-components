@@ -7,3 +7,4 @@ export * from './Popover.stories';
 export * from './Divider.stories';
 export * from './Tabs.stories';
 export * from './Drawer.stories';
+export * from './Accordion.stories';
