@@ -1,12 +1,13 @@
 <h1 align="center">React Tailwindcss Components</h1>
 <div align="center">
 
- [React](https://reactjs.org/) components based on [tailwindcss](https://tailwindcss.com/).
- 
- [![npm package](https://img.shields.io/badge/npm%40latest-v0.1.5-blue)](https://www.npmjs.com/package/react-tailwindcss-components)
- [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
- [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=mui-org/material-ui)](https://dependabot.com)
- 
+[React](https://reactjs.org/) components based on [tailwindcss](https://tailwindcss.com/).
+
+[![npm package](https://img.shields.io/badge/npm%40latest-v0.1.6-blue)](https://www.npmjs.com/package/react-tailwindcss-components)
+[![Languange](https://img.shields.io/badge/language-typescript-orange)](https://www.typescriptlang.org/)
+[![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=mui-org/material-ui)](https://dependabot.com)
+
 </div>
 
 ## Installation
@@ -28,7 +29,7 @@ Here is a quick example to get you started, **it's all you need**:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from "react-tailwindcss-components";
+import { Button } from 'react-tailwindcss-components';
 
 function App() {
   return (

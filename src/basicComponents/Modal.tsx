@@ -47,6 +47,8 @@ export const Modal = React.forwardRef<
     'bg-white': !classes?.modal?.disableDefault?.backgroundColor,
     shadow: !classes?.modal?.disableDefault?.boxShadow,
     'w-full': !classes?.modal?.disableDefault?.width,
+    absolute: !classes?.modal?.disableDefault?.position,
+    'z-50': !classes?.modal?.disableDefault?.zIndex,
   };
 
   const MODAL_SIZE: TClasses[] =

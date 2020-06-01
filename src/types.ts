@@ -268,6 +268,8 @@ export type TModalProps = {
         backgroundColor?: boolean;
         boxShadow?: boolean;
         width?: boolean;
+        position?: boolean;
+        zIndex?: boolean;
       };
       custom?: string;
     };
