@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { classnames } from 'tailwindcss-classnames';
 import { TBackdropProps, TEditableClass } from '../types';
+import { customClassHandler } from '../utils';
 
 export const Backdrop = React.forwardRef<
   HTMLDivElement,
@@ -38,17 +39,17 @@ export const Backdrop = React.forwardRef<
     'z-40': !classes?.root?.disableDefault?.zIndex,
   };
 
-  const rootClass = classnames(ROOT_STYLE);
+  const defaultRootClass = classnames(ROOT_STYLE);
   const customRootClass = classes?.root?.custom || '';
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
   return (
     <React.Fragment>
       {show ? (
-        <div
-          ref={ref}
-          className={`${rootClass} ${customRootClass} ${className || ''}`}
-          {...otherProps}
-        >
+        <div ref={ref} className={rootClass} {...otherProps}>
           {children}
         </div>
       ) : null}

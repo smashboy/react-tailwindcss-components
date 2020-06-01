@@ -2,6 +2,7 @@ import * as React from 'react';
 import { usePopper } from 'react-popper';
 import { classnames, TClasses, groupHover } from 'tailwindcss-classnames';
 import { TPopoverProps, TEditableClass } from '../types';
+import { customClassHandler } from '../utils';
 
 export const Popover: React.FunctionComponent<TPopoverProps &
   React.ComponentProps<'div'>> = props => {
@@ -92,6 +93,36 @@ export const Popover: React.FunctionComponent<TPopoverProps &
     (componentSize === 'xl' && ['w-5', 'h-5']) ||
     [];
 
+  const defaultRootClass = classnames(ROOT_STYLE);
+  const customRootClass = classes?.root?.custom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
+
+  const defaultLabelClass = classnames(
+    LABEL_STYLE,
+    ...LABEL_SIZE,
+    groupHover('visible'),
+    {
+      ['invisible']: !showPopover,
+    }
+  );
+  const customLableClass = classes?.label?.custom;
+  const labelClass = `${defaultLabelClass} ${customClassHandler(
+    customLableClass
+  )}`.trim();
+
+  const defaultArrowClass = classnames(
+    ARROW_STYLE,
+    ARROW_ROTATION,
+    ...ARROW_SIZE
+  );
+  const customArrowClass = classes?.arrow?.custom;
+  const arrowClass = `${defaultArrowClass} ${customClassHandler(
+    customArrowClass
+  )}`.trim();
+
   type TInternalEvent =
     | 'onMouseOver'
     | 'onMouseOut'
@@ -166,27 +197,11 @@ export const Popover: React.FunctionComponent<TPopoverProps &
     return finalPlacement;
   };
 
-  const rootClass = classnames(ROOT_STYLE);
-  const customRootClass = classes?.root?.custom || '';
-
-  const labelClass = classnames(
-    LABEL_STYLE,
-    ...LABEL_SIZE,
-    groupHover('visible'),
-    {
-      ['invisible']: !showPopover,
-    }
-  );
-  const customLableClass = classes?.label?.custom || '';
-
-  const arrowClass = classnames(ARROW_STYLE, ARROW_ROTATION, ...ARROW_SIZE);
-  const customArrowClass = classes?.arrow?.custom || '';
-
   return (
     <React.Fragment>
       {/* REFERENCE ELEMENT */}
       <div
-        className={`${rootClass} ${customRootClass} ${className || ''}`}
+        className={rootClass}
         // @ts-ignore
         ref={setReferenceElement}
         onClick={() => showPopoverHandler('onClick')}
@@ -203,7 +218,7 @@ export const Popover: React.FunctionComponent<TPopoverProps &
         // @ts-ignore
         ref={setPopperElement}
         style={styles.popper}
-        className={`${labelClass} ${customLableClass}`}
+        className={labelClass}
         {...attributes.popper}
       >
         {label ||
@@ -219,7 +234,7 @@ export const Popover: React.FunctionComponent<TPopoverProps &
             data-popper-arrow
           >
             <svg
-              className={`transform ${arrowClass} ${customArrowClass}`}
+              className={`transform ${arrowClass}`}
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"

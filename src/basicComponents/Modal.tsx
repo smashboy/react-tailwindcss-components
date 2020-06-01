@@ -2,6 +2,7 @@ import * as React from 'react';
 import { classnames, TClasses } from 'tailwindcss-classnames';
 import { Backdrop } from './Backdrop';
 import { TModalProps, TEditableClass } from '../types';
+import { customClassHandler } from '../utils';
 
 export const Modal = React.forwardRef<
   HTMLDivElement,
@@ -56,21 +57,24 @@ export const Modal = React.forwardRef<
     (componentSize === 'xl' && ['p-10', 'max-w-screen-xl']) ||
     [];
 
-  const rootClass = classnames(ROOT_STYLE);
-  const customRootClass = classes?.root?.custom || '';
+  const defaultRootClass = classnames(ROOT_STYLE);
+  const customRootClass = classes?.root?.custom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
-  const modalClass = classnames(MODAL_STYLE, ...MODAL_SIZE);
-  const customModalClass = classes?.modal?.custom || '';
+  const defaultModalClass = classnames(MODAL_STYLE, ...MODAL_SIZE);
+  const customModalClass = classes?.modal?.custom;
+  const modalClass = `${defaultModalClass} ${customClassHandler(
+    customModalClass
+  )}`.trim();
 
   return (
     <React.Fragment>
       {show && (
-        <div
-          ref={ref}
-          className={`${rootClass} ${customRootClass} ${className || ''}`}
-          {...otherProps}
-        >
-          <div ref={modalRef} className={`${modalClass} ${customModalClass}`}>
+        <div ref={ref} className={rootClass} {...otherProps}>
+          <div ref={modalRef} className={modalClass}>
             {children}
           </div>
         </div>

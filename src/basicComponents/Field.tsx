@@ -2,7 +2,12 @@ import * as React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TFieldProps, TEditableClass } from '../types';
-import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
+import {
+  DISABLED,
+  FULL_WIDTH,
+  removeDefault,
+  customClassHandler,
+} from '../utils';
 
 export const Field = React.forwardRef<
   HTMLDivElement,
@@ -63,35 +68,39 @@ export const Field = React.forwardRef<
     'bg-transparent': !classes?.field?.disableDefault?.backgroundColor,
   };
 
-  const rootClass = classnames(
+  const defaultRootClass = classnames(
     ROOT_STYLE,
     ...ROOT_SIZE,
     DISABLED(disabled),
     FULL_WIDTH(fullWidth)
   );
-  const customRootClass = classes?.root?.cutsom || '';
+  const customRootClass = classes?.root?.cutsom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
   const textareaClass = classnames(TEXTAREA_RESIZE);
 
-  const fieldClass = classnames(FIELD_STYLE);
-  const customFieldClass = classes?.field?.custom || '';
+  const defaultFieldClass = classnames(FIELD_STYLE);
+  const customFieldClass = classes?.field?.custom;
+  const fieldClass = `${removeDefault} ${defaultFieldClass} ${customClassHandler(
+    customFieldClass
+  )}`.trim();
 
   return (
-    <div
-      ref={ref}
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-    >
+    <div ref={ref} className={rootClass}>
       {startElement && <div className="mr-4">{startElement}</div>}
       {(component === 'input' && (
         <input
-          className={`${removeDefault} ${fieldClass} ${customFieldClass}`}
+          className={fieldClass}
           placeholder={placeholder}
           {...otherProps}
         />
       )) ||
         (component === 'select' && (
           <select
-            className={`${removeDefault} ${fieldClass} ${customFieldClass}`}
+            className={fieldClass}
             multiple={multipleSelect || false}
             {...otherProps}
           >
@@ -100,7 +109,7 @@ export const Field = React.forwardRef<
         )) ||
         (component === 'textarea' && resize !== 'auto' && (
           <textarea
-            className={`${removeDefault} ${fieldClass} ${customFieldClass} ${textareaClass}`}
+            className={`${fieldClass} ${textareaClass}`}
             placeholder={placeholder}
             rows={rowsMin}
             {...otherProps}
@@ -109,7 +118,7 @@ export const Field = React.forwardRef<
         (component === 'textarea' && resize === 'auto' && (
           // @ts-ignore
           <TextareaAutosize
-            className={`${removeDefault} ${fieldClass} ${customFieldClass} ${textareaClass}`}
+            className={`${fieldClass} ${textareaClass}`}
             placeholder={placeholder}
             minRows={rowsMin}
             maxRows={rowsMax}

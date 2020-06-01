@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classnames } from 'tailwindcss-classnames';
 import { TAccordionProps, TAccordionItemProps, TEditableClass } from '../types';
-import { validChildren, DISABLED } from '../utils';
+import { validChildren, DISABLED, customClassHandler } from '../utils';
 
 export const Accordion = React.forwardRef<
   HTMLDivElement,
@@ -24,8 +24,13 @@ export const Accordion = React.forwardRef<
     'w-full': !classes?.root?.disableDefault?.width,
   };
 
-  const rootClass = classnames(ROOT_STYLE);
-  const customRootClass = classes?.root?.custom || '';
+  const defaultRootClass = classnames(ROOT_STYLE);
+  const customRootClass = classes?.root?.custom;
+
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
   const expandHandler = (newValue: any) => {
     const activeIncludes = active.includes(newValue);
@@ -57,11 +62,7 @@ export const Accordion = React.forwardRef<
   });
 
   return (
-    <div
-      ref={ref}
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-      {...otherProps}
-    >
+    <div ref={ref} className={rootClass} {...otherProps}>
       {clonedPanels}
     </div>
   );
@@ -128,12 +129,17 @@ export const AccordionItem = React.forwardRef<
   };
 
   const customRootClass = classes?.root?.custom;
+  const rootClass = customClassHandler(customRootClass);
 
-  const headerClass = classnames(HEADER_STYLE, DISABLED(disabled));
-  const customHeaderClass = classes?.header?.custom || '';
+  const defaultHeaderClass = classnames(HEADER_STYLE, DISABLED(disabled));
+  const customHeaderClass = classes?.header?.custom;
+  const headerClass = `${defaultHeaderClass} ${customHeaderClass}`.trim();
 
-  const panelClass = classnames(PANEL_STYLE);
-  const customPanelClass = classes?.panel?.custom || '';
+  const defaultPanelClass = classnames(PANEL_STYLE);
+  const customPanelClass = classes?.panel?.custom;
+  const panelClass = `${defaultPanelClass} ${customClassHandler(
+    customPanelClass
+  )}`.trim();
 
   React.useEffect(() => {
     if (activeValues) {
@@ -144,19 +150,13 @@ export const AccordionItem = React.forwardRef<
   }, [activeValues, value]);
 
   return (
-    <div
-      className={`${customRootClass} ${className || ''}`}
-      ref={ref}
-      {...otherProps}
-    >
+    <div className={rootClass} ref={ref} {...otherProps}>
       {expandHandler && (
-        <div className={`${headerClass} ${customHeaderClass}`}>
+        <div className={headerClass}>
           <Header isExpanded={expanded} setExpanded={expandHandler} />
         </div>
       )}
-      {expanded && (
-        <div className={`${panelClass} ${customPanelClass}`}>{children}</div>
-      )}
+      {expanded && <div className={panelClass}>{children}</div>}
     </div>
   );
 });

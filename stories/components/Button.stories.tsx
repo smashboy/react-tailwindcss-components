@@ -6,4 +6,6 @@ export default {
   component: ButtonDummyComponent,
 };
 
-export const ButtonPlayground = () => <Button>Hello World!</Button>
+export const ButtonPlayground = () => {
+  return <Button>Hello World!</Button>;
+};

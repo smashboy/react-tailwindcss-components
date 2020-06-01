@@ -2,6 +2,7 @@ import * as React from 'react';
 import { classnames, TClasses } from 'tailwindcss-classnames';
 import { Backdrop } from './Backdrop';
 import { TDrawerProps, TEditableClass } from '../types';
+import { customClassHandler } from '../utils';
 
 export const Drawer = React.forwardRef<
   HTMLDivElement,
@@ -53,24 +54,25 @@ export const Drawer = React.forwardRef<
     (position === 'bottom' && ['inset-x-0', 'bottom-0', 'w-full', 'h-auto']) ||
     [];
 
-  const rootClass = classnames(ROOT_STYLE);
-  const customRootClass = classes?.root?.custom || '';
+  const defaultRootClass = classnames(ROOT_STYLE);
+  const customRootClass = classes?.root?.custom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
-  const drawerClass = classnames(DRAWER_STYLE, ...DRAWER_POSITION);
-  const customDrawerClass = classes?.drawer?.custom || '';
+  const defaultDrawerClass = classnames(DRAWER_STYLE, ...DRAWER_POSITION);
+  const customDrawerClass = classes?.drawer?.custom;
+  const drawerClass = `${defaultDrawerClass} ${customClassHandler(
+    customDrawerClass,
+    className
+  )}`.trim();
 
   return (
     <React.Fragment>
       {show && (
-        <div
-          className={`${className || rootClass || ''} ${customRootClass}`}
-          ref={ref}
-          {...otherProps}
-        >
-          <div
-            className={`${drawerClass} ${customDrawerClass}`}
-            ref={drawerRef}
-          >
+        <div className={rootClass} ref={ref} {...otherProps}>
+          <div className={drawerClass} ref={drawerRef}>
             {children}
           </div>
           <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>

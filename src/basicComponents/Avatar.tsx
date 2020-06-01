@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { classnames, TClasses, TBorderRadius } from 'tailwindcss-classnames';
-import { useImageLoaded } from '../utils';
+import { useImageLoaded, customClassHandler } from '../utils';
 import { TEditableClass, TAvatarProps } from '../types';
 
 export const Avatar = React.forwardRef<
@@ -102,51 +102,55 @@ export const Avatar = React.forwardRef<
     ]) ||
     [];
 
-  const rootClass = classnames(ROOT_STYLE, ...ROOT_SIZE, BORDER_RADIUS);
+  const defaultRootClass = classnames(ROOT_STYLE, ...ROOT_SIZE, BORDER_RADIUS);
   const customRootClass = classes?.root?.custom || '';
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
-  const avatarClass = classnames(AVATAR_STYLE, BORDER_RADIUS);
+  const defaultAvatarClass = classnames(AVATAR_STYLE, BORDER_RADIUS);
   const customAvatarClass = classes?.avatar?.custom || '';
+  const avatarClass = `${defaultAvatarClass} ${customClassHandler(
+    customAvatarClass
+  )}`.trim();
 
-  const imageClass = classnames(IMAGE_STYLE);
+  const defaultImageClass = classnames(IMAGE_STYLE);
   const customImageClass = classes?.image?.custom || '';
+  const imageClass = `${defaultImageClass} ${customClassHandler(
+    customImageClass
+  )}`.trim();
 
-  const fallbackClass = classnames(FALLBACK_STYLE, FALLBACK_FONT_SIZE);
+  const defaultFallbackClass = classnames(FALLBACK_STYLE, FALLBACK_FONT_SIZE);
   const customFallbackClass = classes?.fallback?.custom || '';
+  const fallbackClass = `${defaultFallbackClass} ${customClassHandler(
+    customFallbackClass
+  )}`.trim();
 
-  const badgeClass = classnames(BADGE_STYLE, ...BADGE_SIZE);
+  const defaultBadgeClass = classnames(BADGE_STYLE, ...BADGE_SIZE);
   const customBadgeClass = classes?.badge?.custom || '';
+  const badgeClass = `${defaultBadgeClass} ${customClassHandler(
+    customBadgeClass
+  )}`.trim();
 
   return (
-    <div
-      ref={ref}
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-      {...otherProps}
-    >
-      <div className={`${avatarClass} ${customAvatarClass}`}>
+    <div ref={ref} className={rootClass} {...otherProps}>
+      <div className={avatarClass}>
         {(imageLoaded && src && (
-          <img
-            src={src}
-            alt={alt}
-            className={`${imageClass} ${customImageClass}`}
-          />
+          <img src={src} alt={alt} className={imageClass} />
         )) || (
-          <div className={`${fallbackClass} ${customFallbackClass}`}>
+          <div className={fallbackClass}>
             {(fallbackSrc && (
-              <img
-                src={fallbackSrc}
-                alt={alt}
-                className={`${imageClass} ${customImageClass}`}
-              />
+              <img src={fallbackSrc} alt={alt} className={imageClass} />
             )) ||
               fallback ||
               ''}
           </div>
         )}
       </div>
-      {(withBadge && (
-        <div className={`transform ${badgeClass} ${customBadgeClass}`} />
-      )) || <React.Fragment />}
+      {(withBadge && <div className={`transform ${badgeClass}`} />) || (
+        <React.Fragment />
+      )}
     </div>
   );
 });

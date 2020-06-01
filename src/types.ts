@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { TClasses } from 'tailwindcss-classnames';
 
 // GENERAL TYPES
@@ -6,10 +7,9 @@ export type TComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'custom';
 
 export type TButtonProps = {
   disabled?: boolean;
-  href?: string;
   fullWidth?: boolean;
   componentSize?: TComponentSize;
-  component?: 'a' | 'button' | 'span';
+  component?: 'button' | 'a' | 'div' | 'span';
   startIcon?: React.FunctionComponent;
   centerIcon?: React.FunctionComponent;
   endIcon?: React.FunctionComponent;
@@ -307,7 +307,7 @@ export type TTabsProps = {
         flexWrap?: boolean;
         flexDirection?: boolean;
       };
-      custom?: boolean;
+      custom?: string;
     };
   };
 };

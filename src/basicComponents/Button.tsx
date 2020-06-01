@@ -1,22 +1,31 @@
 import * as React from 'react';
 import { classnames, TClasses } from 'tailwindcss-classnames';
-import { TEditableClass, TButtonProps } from '../types';
-import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
+import { TEditableClass, TButtonProps as ButtonProps } from '../types';
+import {
+  DISABLED,
+  FULL_WIDTH,
+  MergeElementProps,
+  customClassHandler,
+  removeDefault,
+} from '../utils';
+
+export type TButtonProps<
+  P extends React.ElementType = 'button' | 'a' | 'span' | 'div'
+> = {
+  component?: P;
+} & MergeElementProps<P, ButtonProps>;
 
 export const Button = React.forwardRef<
-  HTMLButtonElement & HTMLSpanElement & HTMLLinkElement,
-  TButtonProps &
-    React.ComponentProps<'a'> &
-    React.ComponentProps<'button'> &
-    React.ComponentProps<'span'>
+  HTMLButtonElement | HTMLLinkElement | HTMLSpanElement | HTMLDivElement,
+  TButtonProps
 >((props, ref) => {
   const {
     children,
-    disabled,
+    disabled = false,
     className,
-    componentSize,
-    fullWidth,
-    component,
+    componentSize = 'md',
+    fullWidth = false,
+    component: Component = 'button',
     classes,
     startIcon,
     centerIcon,
@@ -66,58 +75,44 @@ export const Button = React.forwardRef<
     (componentSize === 'xl' && ['py-4', 'px-6', 'text-xl']) ||
     [];
 
-  const rootClass = classnames(
+  const defaultRootClass = classnames(
     ROOT_STYLE,
     ...BUTTON_SIZE,
     DISABLED(disabled),
     FULL_WIDTH(fullWidth)
   );
   const customRootClass = classes?.root?.custom || '';
-  return component === 'a' ? (
-    <a
-      //@ts-ignore
-      ref={ref}
-      className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
-        ''}`}
-      {...otherProps}
-    >
-      {CHILDREN_WRAPPER}
-    </a>
-  ) : component === 'span' ? (
-    <span
-      //@ts-ignore
-      ref={ref}
-      className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
-        ''}`}
-      {...otherProps}
-    >
-      {CHILDREN_WRAPPER}
-    </span>
-  ) : (
-    <button
-      //@ts-ignore
-      ref={ref}
-      className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
-        ''}`}
-      {...otherProps}
-    >
-      {CHILDREN_WRAPPER}
-    </button>
+  const rootClass = `${removeDefault} ${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
+
+  return (
+    (Component && (
+      <Component
+        //@ts-ignore
+        ref={ref}
+        className={rootClass}
+        {...otherProps}
+      >
+        {CHILDREN_WRAPPER}
+      </Component>
+    )) || (
+      <button
+        //@ts-ignore
+        ref={ref}
+        className={rootClass}
+        {...otherProps}
+      >
+        {CHILDREN_WRAPPER}
+      </button>
+    )
   );
 });
 
-Button.defaultProps = {
-  disabled: false,
-  componentSize: 'md',
-  fullWidth: false,
-  component: 'button',
-} as Partial<TButtonProps>;
-
-export const ButtonDummyComponent: React.FunctionComponent<TButtonProps> = props => {
+export const ButtonDummyComponent: React.FunctionComponent<ButtonProps> = props => {
   const {
     children,
-    disabled,
-    href,
     componentSize,
     fullWidth,
     component,
@@ -127,5 +122,12 @@ export const ButtonDummyComponent: React.FunctionComponent<TButtonProps> = props
     endIcon,
     ...otherProps
   } = props;
-  return <div {...otherProps} />;
+  return <button {...otherProps} />;
 };
+
+ButtonDummyComponent.defaultProps = {
+  disabled: false,
+  componentSize: 'md',
+  fullWidth: false,
+  component: 'button',
+} as Partial<ButtonProps>;

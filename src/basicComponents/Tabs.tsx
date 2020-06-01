@@ -6,7 +6,7 @@ import {
   TTabProps,
   TTabPanelProps,
 } from '../types';
-import { validChildren, DISABLED } from '../utils';
+import { validChildren, DISABLED, customClassHandler } from '../utils';
 
 export const Tabs = React.forwardRef<
   HTMLDivElement,
@@ -32,11 +32,18 @@ export const Tabs = React.forwardRef<
     'flex-row': !classes?.list?.disableDefault?.flexDirection,
   };
 
-  const rootClass = classnames(ROOT_STYLE);
-  const customRootClass = classes?.root?.custom || '';
+  const defaultRootClass = classnames(ROOT_STYLE);
+  const customRootClass = classes?.root?.custom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
-  const listClass = classnames(LIST_STYLE);
-  const customListClass = classes?.list?.custom || '';
+  const defaultListClass = classnames(LIST_STYLE);
+  const customListClass = classes?.list?.custom;
+  const listClass = `${defaultListClass} ${customClassHandler(
+    customListClass
+  )}`.trim();
 
   const clonedTabs = validChildren(children).map(child => {
     if (React.isValidElement(child)) {
@@ -45,15 +52,11 @@ export const Tabs = React.forwardRef<
   });
 
   return (
-    <div
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-      ref={ref}
-      {...otherProps}
-    >
+    <div className={rootClass} ref={ref} {...otherProps}>
       <ul
         className={`${listClass} ${
           !classes?.list?.disableDefault?.listStyleType ? 'list-none' : ''
-        } ${customListClass}`}
+        }`}
       >
         {clonedTabs}
       </ul>

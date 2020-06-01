@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classnames } from 'tailwindcss-classnames';
 import { TAvatarGroupProps, TEditableClass } from '../types';
-import { validChildren } from '../utils';
+import { validChildren, customClassHandler } from '../utils';
 import { Avatar } from './Avatar';
 
 export const AvatarGroup = React.forwardRef<
@@ -22,8 +22,12 @@ export const AvatarGroup = React.forwardRef<
     'justify-center': !classes?.root?.disableDefault?.justifyContent,
   };
 
-  const rootClass = classnames(ROOT_STYLE);
+  const defaultRootClass = classnames(ROOT_STYLE);
   const customRootClass = classes?.root?.custom || '';
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
   const validAvatars = validChildren(children);
   const avatarsCount = validAvatars.length;
@@ -65,11 +69,7 @@ export const AvatarGroup = React.forwardRef<
   });
 
   return (
-    <div
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-      ref={ref}
-      {...otherProps}
-    >
+    <div className={rootClass} ref={ref} {...otherProps}>
       {clones}
     </div>
   );

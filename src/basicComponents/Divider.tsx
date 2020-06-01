@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { classnames, TClasses } from 'tailwindcss-classnames';
 import { TDividerProps, TEditableClass } from '../types';
+import { customClassHandler } from '../utils';
 
 export const Divider = React.forwardRef<
   HTMLHRElement,
@@ -21,16 +22,14 @@ export const Divider = React.forwardRef<
       ? ['w-full', 'h-px']
       : ['w-px', 'self-auto', 'h-auto'];
 
-  const rootClass = classnames(ROOT_STYLE, ...ORIENTATION_STYLE);
-  const customRootClass = classes?.root?.custom || '';
+  const defaultRootClass = classnames(ROOT_STYLE, ...ORIENTATION_STYLE);
+  const customRootClass = classes?.root?.custom;
+  const rootClass = `${defaultRootClass} ${customClassHandler(
+    customRootClass,
+    className
+  )}`.trim();
 
-  return (
-    <ElementType
-      className={`${rootClass} ${customRootClass} ${className || ''}`}
-      ref={ref}
-      {...otherProps}
-    />
-  );
+  return <ElementType className={rootClass} ref={ref} {...otherProps} />;
 });
 
 const defaultProps = {

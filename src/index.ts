@@ -3,7 +3,7 @@ export { Avatar } from './basicComponents/Avatar';
 export { AvatarGroup } from './basicComponents/AvatarGroup';
 export { Backdrop } from './basicComponents/Backdrop';
 // export { Breadcrumbs } from './basicComponents/Breadcrumbs';
-export { Button } from './basicComponents/Button';
+export { Button, TButtonProps } from './basicComponents/Button';
 export { Divider } from './basicComponents/Divider';
 export { Drawer } from './basicComponents/Drawer';
 export { Field } from './basicComponents/Field';
@@ -13,4 +13,19 @@ export { Tabs, Tab, TabPanel } from './basicComponents/Tabs';
 
 export { Grid } from './utilityComponents/Grid';
 
-export * from './types';
+export {
+  TAccordionProps,
+  TAccordionItemProps,
+  TAvatarGroupProps,
+  TAvatarProps,
+  TBackdropProps,
+  TDividerProps,
+  TDrawerProps,
+  TModalProps,
+  TPopoverProps,
+  TTabPanelProps,
+  TTabProps,
+  TTabsProps,
+  TGridProps,
+  TFieldProps,
+} from './types';
