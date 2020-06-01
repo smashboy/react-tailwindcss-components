@@ -77,11 +77,11 @@ export const Modal = React.forwardRef<
           <div ref={modalRef} className={modalClass}>
             {children}
           </div>
+          <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>
+            <Backdrop show={show} />
+          </div>
         </div>
       )}
-      <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>
-        <Backdrop show={show} />
-      </div>
     </React.Fragment>
   );
 });
