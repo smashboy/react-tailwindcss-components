@@ -6,7 +6,10 @@ import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
 export const Field = React.forwardRef<
   HTMLDivElement,
-  TFieldProps & React.ComponentProps<'input' | 'select' | 'textarea'>
+  TFieldProps &
+    React.ComponentProps<'input'> &
+    React.ComponentProps<'select'> &
+    React.ComponentProps<'textarea'>
 >((props, ref) => {
   const {
     disabled,
@@ -80,7 +83,6 @@ export const Field = React.forwardRef<
     >
       {startElement && <div className="mr-4">{startElement}</div>}
       {(component === 'input' && (
-        // @ts-ignore
         <input
           className={`${removeDefault} ${fieldClass} ${customFieldClass}`}
           placeholder={placeholder}
@@ -88,7 +90,6 @@ export const Field = React.forwardRef<
         />
       )) ||
         (component === 'select' && (
-          // @ts-ignore
           <select
             className={`${removeDefault} ${fieldClass} ${customFieldClass}`}
             multiple={multipleSelect || false}
@@ -98,7 +99,6 @@ export const Field = React.forwardRef<
           </select>
         )) ||
         (component === 'textarea' && resize !== 'auto' && (
-          // @ts-ignore
           <textarea
             className={`${removeDefault} ${fieldClass} ${customFieldClass} ${textareaClass}`}
             placeholder={placeholder}

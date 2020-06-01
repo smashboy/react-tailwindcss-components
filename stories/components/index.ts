@@ -8,3 +8,4 @@ export * from './Divider.stories';
 export * from './Tabs.stories';
 export * from './Drawer.stories';
 export * from './Accordion.stories';
+export * from './Button.stories';

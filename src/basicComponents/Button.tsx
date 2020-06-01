@@ -4,14 +4,16 @@ import { TEditableClass, TButtonProps } from '../types';
 import { DISABLED, FULL_WIDTH, removeDefault } from '../utils';
 
 export const Button = React.forwardRef<
-  HTMLButtonElement | HTMLSpanElement | HTMLLinkElement,
-  TButtonProps & React.ComponentProps<'a' | 'button' | 'span'>
+  HTMLButtonElement & HTMLSpanElement & HTMLLinkElement,
+  TButtonProps &
+    React.ComponentProps<'a'> &
+    React.ComponentProps<'button'> &
+    React.ComponentProps<'span'>
 >((props, ref) => {
   const {
     children,
     disabled,
     className,
-    href,
     componentSize,
     fullWidth,
     component,
@@ -21,8 +23,6 @@ export const Button = React.forwardRef<
     endIcon,
     ...otherProps
   } = props;
-
-  const ComponentTag = component;
 
   const BUTTON_ICON = startIcon || centerIcon || endIcon || null;
 
@@ -73,18 +73,36 @@ export const Button = React.forwardRef<
     FULL_WIDTH(fullWidth)
   );
   const customRootClass = classes?.root?.custom || '';
-
-  return (
-    // @ts-ignore
-    <ComponentTag
+  return component === 'a' ? (
+    <a
+      //@ts-ignore
       ref={ref}
       className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
         ''}`}
-      href={href && href}
       {...otherProps}
     >
       {CHILDREN_WRAPPER}
-    </ComponentTag>
+    </a>
+  ) : component === 'span' ? (
+    <span
+      //@ts-ignore
+      ref={ref}
+      className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
+        ''}`}
+      {...otherProps}
+    >
+      {CHILDREN_WRAPPER}
+    </span>
+  ) : (
+    <button
+      //@ts-ignore
+      ref={ref}
+      className={`${removeDefault} ${rootClass} ${customRootClass} ${className ||
+        ''}`}
+      {...otherProps}
+    >
+      {CHILDREN_WRAPPER}
+    </button>
   );
 });
 
