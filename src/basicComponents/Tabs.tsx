@@ -64,7 +64,7 @@ export const Tabs = React.forwardRef<
   );
 });
 
-export const TabsDummyComponent: React.FunctionComponent<TTabsProps> = props => {
+export const TabsProps: React.FunctionComponent<TTabsProps> = props => {
   const { value, onTabChange, classes, ...otherProps } = props;
   return <div {...otherProps} />;
 };
@@ -106,12 +106,12 @@ const tabDefaultProps = { disabled: false } as Partial<TTabProps>;
 
 Tab.defaultProps = tabDefaultProps;
 
-export const TabDummyComponent: React.FunctionComponent<TTabProps> = props => {
+export const TabProps: React.FunctionComponent<TTabProps> = props => {
   const { value, classes, disabled, ...otherProps } = props;
   return <div {...otherProps} />;
 };
 
-TabDummyComponent.defaultProps = tabDefaultProps;
+TabProps.defaultProps = tabDefaultProps;
 
 export const TabPanel = React.forwardRef<
   HTMLDivElement,
@@ -125,3 +125,8 @@ export const TabPanel = React.forwardRef<
     </div>
   ) : null;
 });
+
+export const TabPanelProps: React.FunctionComponent<TTabPanelProps> = props => {
+  const { value, activeTab, ...otherProps } = props;
+  return <div {...otherProps} />;
+};

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Button } from '../../src/basicComponents/Button';
 import {
-  AccordionDummyComponent,
+  AccordionItemProps,
+  AccordionProps,
   Accordion,
   AccordionItem,
 } from '../../src/basicComponents/Accordion';
 
 export default {
-  title: 'Components API|Basic Components/Accordion/Accordion',
-  component: AccordionDummyComponent,
+  title: 'Components API|Basic Components/Accordion',
+  component:   AccordionProps,
+  subcomponents: { AccordionItemProps },
 };
 
 export const AccordionPlayground = () => (

@@ -4,12 +4,15 @@ import {
   Tabs,
   Tab,
   TabPanel,
-  TabsDummyComponent,
+  TabsProps,
+  TabProps,
+  TabPanelProps,
 } from '../../src/basicComponents/Tabs';
 
 export default {
-  title: 'Components API|Basic Components/Tabs/Tabs',
-  component: TabsDummyComponent,
+  title: 'Components API|Basic Components/Tabs',
+  component: TabsProps,
+  subcomponents: { TabProps, TabPanelProps },
 };
 
 export const TabsPlayground = () => {

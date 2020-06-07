@@ -75,7 +75,7 @@ const accordionDefaultProps = {
 
 Accordion.defaultProps = accordionDefaultProps;
 
-export const AccordionDummyComponent: React.FunctionComponent<TAccordionProps> = props => {
+export const AccordionProps: React.FunctionComponent<TAccordionProps> = props => {
   const {
     allowMultiple,
     allowToggle,
@@ -89,7 +89,7 @@ export const AccordionDummyComponent: React.FunctionComponent<TAccordionProps> =
   return <div {...otherProps} />;
 };
 
-AccordionDummyComponent.defaultProps = accordionDefaultProps;
+AccordionProps.defaultProps = accordionDefaultProps;
 
 type AccordionItemAdditionalProps = {
   activeValues?: any[];
@@ -167,7 +167,7 @@ const accordionItemDefaultProps = { disabled: false } as Partial<
 
 AccordionItem.defaultProps = accordionItemDefaultProps;
 
-export const AccordionItemDummyComponent: React.FunctionComponent<TAccordionItemProps> = props => {
+export const AccordionItemProps: React.FunctionComponent<TAccordionItemProps> = props => {
   const {
     disabled,
     classes,
@@ -179,4 +179,4 @@ export const AccordionItemDummyComponent: React.FunctionComponent<TAccordionItem
   return <div {...otherProps} />;
 };
 
-AccordionItemDummyComponent.defaultProps = accordionItemDefaultProps;
+AccordionItemProps.defaultProps = accordionItemDefaultProps;
