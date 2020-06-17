@@ -36,6 +36,9 @@ export const Field = React.forwardRef<
 
   // const [focus, setFocus] = React.useState(false);
 
+  const EndElement = endElement;
+  const StartElement = startElement;
+
   const ROOT_SIZE: TClasses[] =
     (componentSize === 'xs' && ['py-1', 'px-2', 'text-xs']) ||
     (componentSize === 'sm' && ['py-1', 'px-3', 'text-sm']) ||
@@ -90,7 +93,11 @@ export const Field = React.forwardRef<
 
   return (
     <div ref={ref} className={rootClass}>
-      {startElement && <div className="mr-4">{startElement}</div>}
+      {StartElement && (
+        <div className="mr-4">
+          <StartElement />
+        </div>
+      )}
       {(component === 'input' && (
         <input
           className={fieldClass}
@@ -125,19 +132,23 @@ export const Field = React.forwardRef<
             {...otherProps}
           />
         ))}
-      {((component === 'select' && !multipleSelect) || endElement) && (
+      {
         <div className="inline-flex justify-center items-center">
-          {endElement || (
-            <svg
-              className="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
-          )}
+          {(component === 'select' && !multipleSelect && EndElement && (
+            <EndElement />
+          )) ||
+            (component === 'select' && !multipleSelect && (
+              <svg
+                className="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            )) ||
+            null}
         </div>
-      )}
+      }
     </div>
   );
 });

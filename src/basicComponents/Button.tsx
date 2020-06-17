@@ -88,7 +88,7 @@ export const Button = React.forwardRef<
   )}`.trim();
 
   return (
-    (Component && (
+    (Component && Component !== 'button' && (
       <Component
         //@ts-ignore
         ref={ref}
@@ -101,6 +101,7 @@ export const Button = React.forwardRef<
       <button
         //@ts-ignore
         ref={ref}
+        disabled={disabled}
         className={rootClass}
         {...otherProps}
       >
