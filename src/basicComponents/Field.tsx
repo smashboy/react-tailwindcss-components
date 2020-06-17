@@ -134,9 +134,7 @@ export const Field = React.forwardRef<
         ))}
       {
         <div className="inline-flex justify-center items-center">
-          {(component === 'select' && !multipleSelect && EndElement && (
-            <EndElement />
-          )) ||
+          {(EndElement && <EndElement />) ||
             (component === 'select' && !multipleSelect && (
               <svg
                 className="fill-current h-4 w-4"

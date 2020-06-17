@@ -3,7 +3,7 @@
 
 [React](https://reactjs.org/) components based on [tailwindcss](https://tailwindcss.com/).
 
-[![npm package](https://img.shields.io/badge/npm%40latest-v0.1.8-blue)](https://www.npmjs.com/package/react-tailwindcss-components)
+[![npm package](https://img.shields.io/badge/npm%40latest-v0.1.9-blue)](https://www.npmjs.com/package/react-tailwindcss-components)
 [![Languange](https://img.shields.io/badge/language-typescript-orange)](https://www.typescriptlang.org/)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=mui-org/material-ui)](https://dependabot.com)
