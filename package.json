@@ -53,7 +53,7 @@
   },
   "module": "dist/react-tailwindcss-components.esm.js",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.10.3",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-docs": "^5.3.19",
     "@storybook/addon-info": "^5.3.18",
@@ -65,7 +65,7 @@
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.6",
     "@types/jest": "^25.2.3",
-    "@types/react": "^16.9.35",
+    "@types/react": "^16.9.38",
     "@types/react-dom": "^16.9.8",
     "@types/react-textarea-autosize": "^4.3.5",
     "babel-loader": "^8.1.0",
@@ -74,15 +74,15 @@
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
-    "storybook-addon-react-docgen": "^1.2.34",
+    "storybook-addon-react-docgen": "^1.2.39",
     "storybook-dark-mode": "^0.6.1",
     "ts-loader": "^7.0.5",
     "tsdx": "^0.13.2",
     "tslib": "^1.11.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.0",
+    "@popperjs/core": "^2.4.2",
     "react-popper": "^2.2.3",
     "react-textarea-autosize": "^7.1.2",
     "tailwindcss-classnames": "^1.3.8"
