@@ -26,10 +26,12 @@ export const Modal = React.forwardRef<
       const eventTarget = e.target as HTMLElement;
       const modalCurrent = modalRef.current;
       const isModalClick =
-        eventTarget === modalCurrent || modalCurrent?.contains(eventTarget);
+        eventTarget === modalCurrent ||
+        modalCurrent?.contains(eventTarget) ||
+        false;
       if (!isModalClick && onBackdropClick && show) onBackdropClick();
     };
-  }, [show, onBackdropClick, modalRef]);
+  }, [show]);
 
   const ROOT_STYLE: TEditableClass = {
     fixed: !classes?.root?.disableDefault?.position,
@@ -79,11 +81,11 @@ export const Modal = React.forwardRef<
           <div ref={modalRef} className={modalClass}>
             {children}
           </div>
-          <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>
-            <Backdrop show={show} />
-          </div>
         </div>
       )}
+      <div className={`${classnames({ 'opacity-0': hideBackdrop })}`}>
+        <Backdrop show={show} />
+      </div>
     </React.Fragment>
   );
 });
